@@ -11,7 +11,7 @@ import _pickle as cp
 import sys
 from astropy.stats import median_absolute_deviation
 
-
+# 根据特征选择方法选取特征
 def select_features_by_variation(data, variation_measure='var', threshold=None, num=None, draw_histogram=False,
                                  bins=100, log=False):
     '''
@@ -81,7 +81,7 @@ def select_features_by_variation(data, variation_measure='var', threshold=None, 
     return indices
 
 
-
+#  标准化
 def min_max_transform(data):
     '''
     This function does a linear transformation of each feature, so that the minimum and maximum values of a
@@ -138,7 +138,7 @@ def generate_feature_distance_ranking(data, method='Pearson'):
 
     corr = 1 - corr
     corr = np.around(a=corr, decimals=10)
-
+# 取相似性矩阵的下半矩阵，进行排名
     tril_id = np.tril_indices(num, k=-1)
     rank = rankdata(corr[tril_id])
     ranking = np.zeros((num, num))
